@@ -15,8 +15,8 @@ const pokemonSchema = new mongoose.Schema({
     weight: Number,
     sex: {
         type: String,
-        enum: ['male', 'female', 'none'],
-        default: 'none'
+        enum: ['male', 'female', 'none', 'both'],
+        default: 'both'
     },
     evolutions: [{
         type: mongoose.Schema.Types.ObjectId,
