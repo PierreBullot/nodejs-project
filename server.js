@@ -1,29 +1,14 @@
 const express = require("express");
+const cors = require('cors');
+const connectDB = require('./config/db');
+
+connectDB();
+
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello world');
-});
-
-app.get('/users', (req, res) => {
-    res.send('Liste des utilisateurs');
-});
-
-app.get('/user/:id', (req, res) => {
-    res.send(`Utilisateur avec id : ${req.params.id}`);
-});
-
-app.post('/user', (req, res) => {
-    res.send(`creation de l'utilisateur: ${req.params.id}`);
-});
-
-app.put('/user/:id', (req, res) => {
-    res.send(`modification de l'utilisateur: ${req.params.id}`);
-});
-
-app.delete('/user/:id', (req, res) => {
-    res.send(`suppression de l'utilisateur: ${req.params.id}`);
-});
+app.use('/pokemons', require('./routes/pokemons'));
 
 app.listen(3000, () => {
     console.log('listening on localhost:3000');
