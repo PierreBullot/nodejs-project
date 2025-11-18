@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const arenaSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        unique: true
+    },
     type: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Type'

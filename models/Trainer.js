@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const trainerSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        unique: true
+    },
     active_pokemons: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Pokemon'
