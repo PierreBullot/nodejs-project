@@ -21,6 +21,15 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const moves = await Move.findById(req.params.id);
+        res.status(200).json(moves);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 router.put('/:id', async (req, res) => {
     try {
         const updatedMove = await Move.findByIdAndUpdate(req.params.id, req.body, { new: true });

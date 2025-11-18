@@ -21,6 +21,15 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const pokemons = await Pokemon.findById(req.params.id);
+        res.status(200).json(pokemons);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 router.put('/:id', async (req, res) => {
     try {
         const updatedPokemon = await Pokemon.findByIdAndUpdate(req.params.id, req.body, { new: true });
