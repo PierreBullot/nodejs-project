@@ -54,7 +54,7 @@ describe('API Types', () => {
         expect(res.body).toHaveLength(3);
     })
 
-    it("GET /types/:id - retourne les données de l'type d'id :id", async () => {
+    it("GET /types/:id - retourne les données du type d'id :id", async () => {
         const typeNormal = await Type.create({name: 'Normal', weaknesses: [], resistances: []});
 
         const res = await request(app).get(`/types/${typeNormal._id}`);
@@ -66,7 +66,7 @@ describe('API Types', () => {
         expect(res.body.resistances).toHaveLength(0);
     });
 
-    it("PUT /types/:id - modifie les données de l'type d'id :id", async () => {
+    it("PUT /types/:id - modifie les données du type d'id :id", async () => {
         const typeNormal = await Type.create({name: 'Normal', weaknesses: [], resistances: []});
 
         const res = await request(app)
@@ -74,12 +74,13 @@ describe('API Types', () => {
             .send({name: 'Normal', weaknesses: [typeNormal._id], resistances: [typeNormal._id]});
 
         expect(res.statusCode).toBe(200);
+        expect(res.body._id).toBe(typeNormal._id.toString());
         expect(res.body.name).toBe('Normal');
         expect(res.body.weaknesses).toHaveLength(1);
         expect(res.body.resistances).toHaveLength(1);
     });
 
-    it("DELETE /types/:id - supprime l'type d'id :id", async () => {
+    it("DELETE /types/:id - supprime le type d'id :id", async () => {
         const typeNormal = await Type.create({name: 'Normal', weaknesses: [], resistances: []});
 
         const res = await request(app).delete(`/types/${typeNormal._id}`);

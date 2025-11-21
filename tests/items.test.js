@@ -63,6 +63,7 @@ describe('API Items', () => {
             .send({name: 'Superball', category: 'Capture', description: 'Capture un pokémon. Moyennement puissante.'});
 
         expect(res.statusCode).toBe(200);
+        expect(res.body._id).toBe(pokeball._id.toString());
         expect(res.body.name).toBe('Superball');
         expect(res.body.category).toBe('Capture');
         expect(res.body.description).toBe('Capture un pokémon. Moyennement puissante.');
